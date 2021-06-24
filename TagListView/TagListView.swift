@@ -220,9 +220,9 @@ open class TagListView: UIView {
     // MARK: - Interface Builder
     
     open override func prepareForInterfaceBuilder() {
-        addTag("Welcome")
-        addTag("to")
-        addTag("TagListView").isSelected = true
+        addTag(NSAttributedString(string: "Welcome"))
+        addTag(NSAttributedString(string: "to"))
+        addTag(NSAttributedString(string: "TagListView")).isSelected = true
     }
     
     // MARK: - Layout
@@ -376,7 +376,7 @@ open class TagListView: UIView {
     
     @discardableResult
     open func addTags(_ titles: [String]) -> [TagView] {
-        return addTagViews(titles.map(createNewTagView))
+        return addTagViews(titles.map{ createNewTagView(NSAttributedString(string: $0))})
     }
     
     @discardableResult
@@ -400,7 +400,7 @@ open class TagListView: UIView {
 
     @discardableResult
     open func insertTag(_ title: String, at index: Int) -> TagView {
-        return insertTagView(createNewTagView(title), at: index)
+        return insertTagView(createNewTagView(NSAttributedString(string: title)), at: index)
     }
     
 
